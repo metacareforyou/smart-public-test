@@ -1,0 +1,1619 @@
+.App {
+  text-align: left;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+.select-all-container {
+  display: flex;
+  align-items: center; /* Aligns items vertically centered */
+  gap: 10px; /* Adds space between the h3 and the checkbox */
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Loading container styles to accommodate larger message */
+.loading-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.9); /* Light background for contrast */
+  border-radius: 10px;
+  padding: 20px; /* Padding to give space around the content */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for emphasis */
+  max-width: 300px; /* Limit max width to prevent overflowing on small screens */
+  width: 90%; /* Responsive width for mobile and desktop */
+  box-sizing: border-box;
+  z-index: 1000; /* Ensure the spinner stays on top */
+}
+
+/* Spinner styles with space for the message */
+.loading-spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top: 4px solid #FF2D55;
+  width: 100px;
+  height: 100px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  position: relative;
+  margin: 0 auto; /* Center the spinner within the container */
+}
+
+/* Centered icon in the spinner */
+.spinner-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 92px;
+  height: 92px;
+}
+
+/* Loading message styles for emphasis and longer text */
+.loading-message {
+  font-size: 18px; /* Larger font size for visibility */
+  color: #333;
+  font-weight: bold;
+  margin-top: 20px; /* Space between spinner and message */
+  word-wrap: break-word; /* Ensures longer text wraps within container */
+  line-height: 1.5; /* Increases readability for long messages */
+  text-align: center; /* Center the text */
+}
+
+/* Spinner animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  width: 60vw;
+  margin: 0 auto;
+  padding: 0px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.chat-input {
+  width: calc(100% - 20px); /* Adjust width, ensuring it doesn't overflow its container */
+  padding: 10px; /* Add some padding inside the input for better text visibility */
+  margin: 10px 0; /* Add some margin for spacing around the input */
+  border: 1px solid #ccc; /* Give it a subtle border */
+  border-radius: 5px; /* Rounded corners for a modern look */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: a light shadow for depth */
+  font-size: 16px; /* Increase font size for better readability */
+  line-height: 1.5; /* Adjust line height for text inside the input */
+  background-color: #fff; /* Background color */
+  color: #333; /* Text color */
+}
+
+.chat-input:focus {
+  border-color: #FFB85A; /* Highlight color when the input is focused */
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25); /* Optional: a stronger shadow on focus */
+  outline: none; /* Remove the default focus outline */
+}
+
+.topic-search {
+  width: 70%; /* Set width to 70% of the container */
+  margin: 0 auto; /* Center the container horizontally */
+}
+
+.topic-input {
+  width: 100%; /* Set width to 100% of the container */
+  margin: 10px auto; /* Center the input horizontally and provide top/bottom margin */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  line-height: 1.5;
+  background-color: #fff;
+  color: #333;
+}
+
+.topic-input:focus {
+  border-color: #FFB85A; /* Highlight color when the input is focused */
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25); /* Optional: a stronger shadow on focus */
+  outline: none; /* Remove the default focus outline */
+}
+
+h1 {
+  text-align: center;
+  background-color: #E6E7E9;
+  margin: 0; /* Removes margin around the h1 */
+  padding: 0; /* Removes padding inside the h1 */
+}
+h1 img {
+  height: 150px;  /* Adjust the height of the image as needed */
+}
+
+.message-display {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.fixed-content {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff; /* Adjust the background color as needed */
+  padding: 10px; /* Adjust padding as needed */
+  /* Add any other styles you want for the fixed content */
+}
+
+.resources {
+  margin-top: 250px; /* Adjust the margin to create space below the fixed content */
+  /* Add any other styles for the input group */
+}
+
+.message-container {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}
+.message-container img {
+  width: 80px; /* Adjust width as needed */
+  height: 75px; /* Adjust height as needed */
+  margin-right: 5px;
+}
+
+.message-container .message {
+  padding: 10px;
+  border-radius: 8px;
+  max-width: 70%;
+  word-wrap: break-word;
+}
+
+.message-container.system {
+  background-color: #E6E7E9;
+}
+
+.message-container.user {
+  background-color: #FFE2D2;
+}
+
+.message-container.assistant {
+  background-color: #E6E7E9;
+}
+
+form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+input[type="text"] {
+  flex: 1;
+  margin-right: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.upload-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.upload-label,
+button {
+  display: inline-block;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #FFB85A;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.upload-label:hover,
+button:hover {
+  background-color: #FF2D55;
+}
+
+.upload-label:hover {
+  background-color: #FF2D55;
+}
+
+.file-input {
+  display: none;
+}
+
+.menu {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+}
+
+.menu-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #FFB85A;
+  color: #fff;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #E6E7E9;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.dropdown-menu button {
+  display: block;
+  width: 100%;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #FFB85A;
+  color: #fff;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.dropdown-menu button:last-child {
+  margin-bottom: 0;
+}
+
+.dropdown-menu button:hover {
+  background-color: #FF2D55;
+}
+.error-message {
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  background-color: #f8d7da;  /* light red */
+  color: #721c24;  /* dark red */
+  border: 1px solid #f5c6cb;  /* red */
+}
+/* Use Roboto for the entire app */
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Use Roboto for chat messages */
+.message-container.system,
+.message-container.user,
+.message-container.assistant {
+  font-family: 'Roboto', sans-serif;
+  align-items: center;
+}
+
+h1 {
+  font-family: 'Roboto', sans-serif;
+}
+
+.modal {
+  display: flex;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  width: 95%;
+  max-height: 80vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;  /* Align content to the left */
+  justify-content: flex-start;  /* Align content to the top */
+  line-height: 1.6;  /* Increase line height for readability */
+  font-size: 16px;  /* Set a readable font size */
+  color: #333;  /* Set a high-contrast text color */
+}
+
+.content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  width: 95%;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;  /* Align content to the left */
+  justify-content: flex-start;  /* Align content to the top */
+  line-height: 1.6;  /* Increase line height for readability */
+  font-size: 16px;  /* Set a readable font size */
+  color: #333;  /* Set a high-contrast text color */
+}
+
+/* Header styling */
+.content h2 {
+  color: #FF2D55;
+  font-size: 16px;
+  margin-bottom: 20px;
+  margin-top: 0;
+  align-self: flex-start; /* Aligns to the top-left */
+}
+
+/* Header styling */
+.content h3 {
+  color: #FF2D55;
+  font-size: 14px;
+  margin-bottom: 20px;
+  margin-top: 0;
+  align-self: flex-start; /* Aligns to the top-left */
+}
+
+
+.disclaimer {
+  color: #FF2D55;
+  font-size: 11px;
+  margin: 0 auto; 
+}
+
+
+.copyright {
+  color: #FF2D55;
+  font-size: 13px;
+  margin: 0 auto; 
+}
+
+.modal-content .disclaimer {
+  color: #FF2D55;
+  font-size: 11px;
+}
+
+.button-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+  color: #FF2D55; /* or any color you prefer */
+}
+
+.button-link:hover {
+  color: #FFF; /* Change to white or any other desired color */
+}
+
+/* General modal styling */
+.modal-content {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 95%;
+  padding: 20px;
+  margin: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column; /* Ensures that children are stacked vertically */
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Header styling */
+.modal-content h1 {
+  color: black;
+  font-size: 18px;
+  margin-bottom: 20px;
+  margin-top: 0;
+  align-self: flex-start; /* Aligns to the top-left */
+}
+/* Header styling */
+.modal-content h2 {
+  color: #FF2D55;
+  font-size: 16px;
+  margin-bottom: 20px;
+  margin-top: 0;
+  align-self: flex-start; /* Aligns to the top-left */
+}
+
+/* Group input styling */
+.input-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column; /* Ensures elements within are stacked vertically */
+}
+
+.input-group label {
+  background-color: #fff;
+  color: #FFB85A;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.input-group input[type="text"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.input-group input[type="checkbox"] {
+  margin-right: 10px;
+  background-color: #FF2D55;
+}
+
+/* Button styling */
+.form-actions {
+  text-align: right;
+}
+.topic-button {
+  background-color: #FFB85A; /* Non-hover color */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px; /* Rounded button */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.topic-button svg {
+  font-size: 18px; /* Icon size */
+  color: white; /* Icon color */
+}
+
+.topic-button:disabled {
+  background-color: #cccccc; /* Disabled button color */
+  cursor: not-allowed;
+}
+
+.topic-button:hover:not(:disabled) {
+  background-color: #FF2D55; /* Hover color */
+}
+
+.form-actions button {
+  background-color: #FF2D55;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 10px 20px;
+  margin-left: 10px;
+  font-size: 16px;
+}
+
+.form-actions button[type="button"] {
+  background-color: #FFB85A;
+}
+
+.form-actions button:hover {
+  opacity: 0.9;
+}
+
+/* General styling for select boxes */
+select {
+  width: 100%; /* Makes select box take full width of its container */
+  padding: 8px 12px; /* Adds some padding inside the select box */
+  margin-top: 8px; /* Adds margin on top for spacing */
+  border-radius: 4px; /* Rounds the corners of the select box */
+  border: 1px solid #ccc; /* Adds a border with a light grey color */
+  background-color: white; /* Sets the background color to white */
+  font-size: 16px; /* Sets a comfortable font size */
+  cursor: pointer; /* Changes cursor to pointer to indicate it's clickable */
+}
+
+/* Styling for select box when it's focused */
+select:focus {
+  outline: none; /* Removes the default focus outline */
+  border-color: #FF2D55;/* Changes border color to a blue, for example, when focused */
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25); /* Adds a subtle shadow to indicate focus */
+}
+
+/* You might want to add specific class names to target only certain select elements */
+/* For example, for a select box with a class name 'taxonomy-select' */
+.taxonomy-select {
+  width: 50%; /* Example: Makes this specific select box take half width of its container */
+  /* You can add or override other styles specifically for this select box */
+}
+/* Style for patient data section */
+.patient-data-section {
+  background-color: #FFE2D2;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  transition: max-height 0.3s ease; /* Add transition for smooth animation */
+  overflow: hidden; /* Hide content that overflows */
+}
+.patient-data-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+.patient-data-header h2 {
+  color: #FF2D55;
+  margin-bottom: 10px;
+}
+.patient-info {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;}
+
+.info-item {
+  padding: 10px;
+}
+.info-item strong {
+  font-weight: bold;
+  color: #FF2D55;
+}
+.coverage-entry {
+  padding: 10px;
+}
+.patient-info.collapsed {
+  max-height: 0;
+  padding: 0;
+  margin: 0;
+}
+.coverage-section {
+  background-color: #E6E7E9;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  transition: max-height 0.3s ease; /* Add transition for smooth animation */
+  overflow: hidden; /* Hide content that overflows */
+  
+}
+.coverage-section .section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+.coverage-section .section-header h2 {
+  color: #FF2D55;
+}
+.coverage-section .coverage-entry {
+  color: #FF2D55;
+  margin-bottom: 10px;
+}
+.coverage-section .coverage-entry h3 {
+  color: #FFB85A;
+  margin-bottom: 10px;
+}
+.coverage-item.collapsed {
+  max-height: 0;
+  padding: 0;
+  margin: 0;
+}
+.info-item {
+  padding: 1x;
+}
+.eob-info-items {
+  padding: 10px;
+}
+.eob-info-items h3{
+  color: #550469;
+}
+.eob-section {
+  background-color: #FFB85A;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  transition: max-height 0.3s ease; /* Add transition for smooth animation */
+  overflow: hidden; /* Hide content that overflows */
+}
+.eob-section .section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+.eob-section .section-header h2 {
+  color: #FF2D55;
+}
+.eob-section .collapse-icon {
+  font-size: 1.2em;
+  transition: transform 0.3s ease; /* Add transition for smooth animation */
+}
+.eob-section.collapsed .collapse-icon {
+  transform: rotate(-90deg);
+}
+.eob-info.collapsed {
+  max-height: 0;
+  padding: 0;
+  margin: 0;
+}
+
+/* Initially hide the FAQs */
+.faq-container {
+  display: none;
+}
+
+/* Show the FAQs when the parent is hovered */
+.faq-parent:hover .faq-container {
+  display: block;
+}
+
+.diagnosis {
+  background-color: #E6E7E9;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+.diagnosis-item {
+  margin-bottom: 15px;
+}
+.diagnosis h4 {
+  color: #333;
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+.diagnosis-item p {
+  margin: 0;
+}
+
+.diagnosis-links a {
+  display: none;
+}
+.diagnosis-item:hover .diagnosis-links a {
+  display: inline-block;
+}
+.diagnosis {
+  background-color: #E6E7E9;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+.diagnosis-item {
+  margin-bottom: 15px;
+}
+.diagnosis h4 {
+  color: #FF2D55;
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+.diagnosis-item p {
+  color: #550469;
+}
+.diagnosis-links {
+  margin-top: 5px;
+}
+.diagnosis-links a {
+  color: #FF2D55;
+  text-decoration: none;
+  cursor: pointer;
+}
+.diagnosis-links a:hover {
+  text-decoration: underline;
+}
+.care-team {
+  background-color: #FFE2D2;
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Adjust spacing between care team members */
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+.care-team-member {
+  background-color: #FFE2D2; 
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
+}
+.care-team-member p {
+  margin: 0; /* Remove default margin for paragraphs */
+}
+.care-team-member p strong {
+  font-weight: bold;
+}
+.care-team-member a {
+  color: #FF2D55; /* Blue color for links */
+  text-decoration: none;
+  cursor: pointer;
+}
+.care-team-member a:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+.codes {
+  display: inline-block;
+  width: calc(25% - 10px); /* 25% width with 10px spacing between columns */
+  margin-right: 10px; /* Spacing between columns */
+  margin-bottom: 10px; /* Spacing between rows */
+  vertical-align: top; /* Align items to the top of the container */
+}
+
+.codes a {
+  display: block;
+  font-size: 12px; /* Small font size */
+  padding: 5px; /* Minimal padding */
+  text-decoration: none;
+  color: #FF2D55; /* Text color */
+}
+
+.codes a:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+
+/* Clear float after every 4th item */
+.codes:nth-child(4n) {
+  margin-right: 0; /* No right margin for the last item in each row */
+  clear: both;
+}
+
+.actions-menu {
+  background-color: #FF2D55;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.actions-menu a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.question-heading {
+  margin-top: 20px;
+}
+
+.summary-section {
+  margin-top: 20px;
+}
+
+.articles-section {
+  margin-top: 20px;
+}
+
+.articles-list {
+  list-style: none;
+  padding: 0;
+}
+
+.article-item {
+  margin-bottom: 20px;
+}
+
+.article-item p {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+.error-message {
+  color: #FF2D55;
+}
+
+.question-heading {
+  margin-top: 20px;
+}
+
+.summary-section {
+  margin-top: 20px;
+}
+
+.articles-section {
+  margin-top: 20px;
+}
+
+.articles-list {
+  list-style: none;
+  padding: 0;
+}
+
+.article-item {
+  margin-bottom: 20px;
+}
+
+.article-item p {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+/* Main container */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex; /* Use flexbox */
+  flex-direction: column; /* Arrange children vertically */
+  align-items: center; /* Center children horizontally */
+}
+
+/* Form section */
+.form-section {
+  width: 100%; /* Make form section full width */
+  max-width: 600px; /* Limit form section width */
+}
+
+/* Form group */
+.form-group {
+  margin-bottom: 15px;
+  width: 100%; /* Make form group full width */
+}
+/* Input field within the form group */
+.form-group .input-field {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.lit-share-modal {
+  width: 500px;
+  height: 700px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #FF2D55;
+  border-radius: 0.25em;
+}
+
+.resource-data-header {
+  background-color: #E6E7E9;
+  padding: 10px;
+}
+
+.resource-data-header h2{
+  color: #FF2D55;
+  font-size: 22px;
+}
+
+.resource-data-section {
+  color: #FFB85A;
+  font-size: 18px;
+  padding: 10px;
+}
+
+.resource-data-section {
+  color: #FFB85A;
+  font-size: 18px;
+  padding: 10px;
+}
+
+/* Style for the Diagnosis item */
+.resource-data-section .diagnosis-item {
+  margin-bottom: 15px;
+}
+
+/* Style for the Diagnosis description */
+.resource-data-section .diagnosis-item p {
+  margin: 0;
+}
+.resource-data-section .important{
+  color: #FF2D55;
+  font-size: 19px;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.important{
+  color: #FF2D55;
+  font-size: 19px;
+  font-weight: bold;
+  display: inline-block;
+}
+
+/* Hide diagnosis links by default */
+.resource-data-section .diagnosis-item .diagnosis-links a {
+  display: none;
+}
+
+/* Show diagnosis links when hovering over diagnosis item */
+.resource-data-section .diagnosis-item.diagnosis-item:hover .resource-data-section .diagnosis-item.diagnosis-links a {
+  display: inline-block;
+}
+
+/* app.css */
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh; /* Ensure the login form fills the viewport vertically */
+}
+
+.login-form h2 {
+  color: #FF2D55; /* Set the color to #FF2D55 */
+  margin-bottom: 20px;
+  font-size: 1.5em;
+  height: auto;
+}
+
+.login-form p {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.login-form .browse {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.login-form button {
+  background-color: white;
+  color: #FF2D55;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.login-form .image-container {
+  max-width: 215px;
+  max-height: 60px;
+}
+
+/* Aligning the buttons */
+.login-form .prev-button {
+  background-color: white;
+  color: #FF2D55;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-size: 40px;
+}
+
+.login-form .next-button {
+  background-color: white;
+  color: #FF2D55;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-size: 40px;
+}
+.health-alerts-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: left; /* Ensures left alignment */
+}
+
+.health-alerts-container h2 {
+  color: #600c90;
+}
+
+.health-alerts-header {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #600c90;
+}
+
+.health-alerts-content {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.alert {
+  background-color: #FFE2D2; /* Light orange-red background */
+  border-left: 5px solid #FF2D55; /* Strong red border on the left */
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 5px;
+  color: #333; /* Dark text color for readability */
+  font-family: 'Roboto', sans-serif; /* Ensure consistent font styling */
+  line-height: 1.6; /* Increase line height for readability */
+}
+
+.alert h3 {
+  color: #FF2D55; /* Strong red for the alert title */
+  margin-top: 0;
+  font-size: 1.2em;
+}
+
+.alert p {
+  margin: 10px 0;
+  white-space: pre-line; /* This ensures that newlines are respected */
+}
+
+.alert a {
+  color: #FF2D55; /* Red color for links */
+  text-decoration: underline; /* Underline links */
+}
+
+.alert a:hover {
+  color: #FFB85A; /* Change to the orange color on hover */
+}
+
+.health-alerts-content .copyright,
+.health-alerts-content .disclaimer {
+  margin-top: 20px;
+  color: #FF2D55;
+  font-size: 13px;
+}
+
+.chat-button {
+  background-color: #FFB85A; /* Non-hover color */
+  border: none;
+  padding: 10px;
+  border-radius: 50%; /* Circular button */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.chat-button svg {
+  color: white; /* Icon color */
+  font-size: 20px; /* Icon size */
+}
+
+.chat-button:disabled {
+  background-color: #cccccc; /* Disabled button color */
+  cursor: not-allowed;
+}
+
+.chat-button:hover:not(:disabled) {
+  background-color: #FF2D55; /* Hover color */
+}
+/* Container to align buttons side by side */
+.button-container {
+  display: flex;
+  gap: 10px; /* Space between the buttons */
+  justify-content: flex-start; /* Align buttons to the start of the container */
+}
+
+/* Shared Button Styles */
+.shared-button {
+  background-color: #FFB85A; /* Orange default color */
+  border: none;
+  padding: 8px; /* Consistent padding */
+  width: 40px; /* Fixed width */
+  height: 40px; /* Fixed height */
+  border-radius: 50%; /* Circular button */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.shared-button svg {
+  font-size: 16px; /* Same icon size for both buttons */
+  color: white; /* Icon color */
+}
+
+.shared-button:disabled {
+  background-color: #cccccc; /* Disabled button color */
+  cursor: not-allowed;
+}
+
+.shared-button:hover:not(:disabled) {
+  background-color: #FF2D55; /* Red hover color */
+}
+
+/* Tooltip Styles for Share Button */
+.shared-button.share-button {
+  background: none;
+  border: none;
+  position: relative;
+  margin-top: 2px; /* Add a little space from the top */
+}
+
+.shared-button.share-button::after {
+  content: attr(title);
+  position: absolute;
+  bottom: 125%; /* Position above the button */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: black;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+  font-size: 12px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 1000;
+}
+
+.shared-button.share-button:hover::after {
+  opacity: 1; /* Show tooltip on hover */
+}
+
+
+.mic-button {
+  background-color: #FFB85A; /* Non-hover color */
+  border: none;
+  padding: 10px;
+  border-radius: 50%; /* Circular button */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+  margin-right: 10px; /* Adjust space between mic button and input field */
+}
+
+.mic-button svg {
+  font-size: 20px; /* Icon size */
+  color: white; /* Icon color */
+}
+
+.mic-button:disabled {
+  background-color: #cccccc; /* Disabled button color */
+  cursor: not-allowed;
+}
+
+.mic-button:hover:not(:disabled) {
+  background-color: #FFA726; /* Hover color */
+}
+
+.pillbox-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.pillbox-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.pillbox-table td.selected-day {
+  background-color: #FFB85A;
+}
+
+
+
+.medication-search button {
+  padding: 10px;
+  background-color: #FFB85A;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+}
+.medication-info {
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pillbutton {
+  margin-left: 10px !important;
+  padding: 5px !important;
+  background-color: #FFB85A !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 50% !important;
+  cursor: pointer !important;
+  width: 50px !important;
+  height: 50px !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+
+.pillbutton:hover {
+  background-color: #ffa726;
+}
+
+.pillbutton:hover {
+  background-color: #ccc;
+}
+
+.selected-day {
+  font-weight: bold;
+  border: 2px solid #000; /* example to highlight the selected day */
+}
+
+.pillbox-table td:nth-child(1) { /* Sunday */
+  background-color: #f4ef51;
+}
+
+.pillbox-table td:nth-child(2) { /* Monday */
+  background-color: #d82526;
+}
+
+.pillbox-table td:nth-child(3) { /* Tuesday */
+  background-color: #ba5dc4;
+}
+
+.pillbox-table td:nth-child(4) { /* Wednesday */
+  background-color: #2b4da9;
+}
+
+.pillbox-table td:nth-child(5) { /* Thursday */
+  background-color: #a8e9fc;
+}
+
+.pillbox-table td:nth-child(6) { /* Friday */
+  background-color: #3be9ce;
+}
+
+.pillbox-table td:nth-child(7) { /* Saturday */
+  background-color: #fca138;
+}
+.pillbox-table td:nth-child(8) { /* Saturday */
+  background-color: #ccc;
+}
+
+.pillbox-table td {
+  padding: 10px;
+  text-align: center;
+  color: #fff; /* white text for readability */
+  cursor: pointer;
+}
+.days-checkbox label:nth-child(1) { /* Sunday */
+  background-color: #e8d625;
+  color: #fff;
+  padding: 5px;
+}
+
+.days-checkbox label:nth-child(2) { /* Monday */
+  background-color: #d82526;
+  color: #fff;
+  padding: 5px;
+}
+
+.days-checkbox label:nth-child(3) { /* Tuesday */
+  background-color: #ba5dc4;
+  color: #fff;
+  padding: 5px;
+}
+
+.days-checkbox label:nth-child(4) { /* Wednesday */
+  background-color: #2b4da9;
+  color: #fff;
+  padding: 5px;
+}
+
+.days-checkbox label:nth-child(5) { /* Thursday */
+  background-color: #a8e9fc;
+  color: #fff;
+  padding: 5px;
+}
+
+.days-checkbox label:nth-child(6) { /* Friday */
+  background-color: #3be9ce;
+  color: #fff;
+  padding: 5px;
+}
+
+.days-checkbox label:nth-child(7) { /* Saturday */
+  background-color: #fca138;
+  color: #fff;
+  padding: 5px;
+}
+
+.days-checkbox input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+
+.suggestions-list {
+  list-style-type: none;
+  padding: 0;
+  border: 1px solid #ccc;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.suggestion-item {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.suggestion-item:hover {
+  background-color: #FFB85A;
+}
+#form-medication-stmt {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+#form-medication-stmt label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+#form-medication-stmt input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+}
+
+#form-medication-stmt button {
+  padding: 10px;
+  background-color: #FFB85A;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#form-medication-stmt button:hover {
+  background-color: #ccc;
+}
+
+label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input, .days-checkbox {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.days-checkbox {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.days-checkbox label {
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
+
+.warning-button {
+  background-color: #FF6347; /* Tomato color for warning */
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.warning-button:hover {
+  background-color: #FF4500;
+}
+
+.warning-details {
+  margin-top: 15px;
+}
+
+.drug-warnings-container {
+  position: relative;
+}
+
+.adverse-report {
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.adverse-report h5, .adverse-report h6 {
+  margin-top: 0;
+}
+
+.avatar-selection {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.avatar-tile {
+  text-align: center;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 8px;
+  transition: border 0.3s;
+  width: 120px;
+}
+
+.avatar-tile.selected {
+  border: 2px solid #FF2D55; /* Highlight selected avatar */
+}
+
+.avatar-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+  object-fit: cover;
+}
+
+.avatar-info {
+  margin-top: 8px;
+}
+
+.avatar-info p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.awareness-component {
+  text-align: center;
+  margin: 20px;
+}
+
+.awareness-day h2 {
+  color: #FF2D55; /* Primary color */
+  font-size: 12px; /* Reduced font size */
+}
+
+.awareness-day p {
+  color: #333;
+  font-size: 10px; /* Reduced font size */
+}
+
+@media (max-width: 600px) {
+  /* General modal styling */
+  .modal-content {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 580px;
+    padding: 20px;
+    margin: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column; /* Ensures that children are stacked vertically */
+  }
+
+  .chat-container {
+    width: 100%;
+    box-sizing: border-box;  
+    padding: 0 10px;
+  }
+
+  .message-container {
+    flex-wrap: wrap;
+    align-items: center;  /* align child items (including image) to the center */
+  }
+
+  h1 {
+    font-size: 1.5em;
+    height: auto;
+  }
+
+  h1 img {
+    height: 75px;
+    max-width: 100%;  /* Adjust the width of the image */
+  }
+  .message-container img {
+    width: 50px;  /* smaller width */
+    height: 47px;  /* smaller height */
+    margin-right: 3px;
+    align-self: center;  /* align to the center of the container */
+  }
+
+  .message-container .message {
+    margin-left: 60px;  /* space to the left to accommodate the image */
+  }
+
+  .menu-button {
+    padding: 15px 25px;  /* Increase padding for better touch */
+  }
+
+  /* Adjust the size of the input field and button for better touch */
+  input[type="text"], .chat-button {
+    padding: 15px;
+    font-size: 1em;
+  }
+
+  .form-actions {
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    gap: 10px; /* Add some space between the buttons */
+  }
+
+  /* Increase the size of buttons in the dropdown menu for better touch */
+  .dropdown-menu button {
+    padding: 15px;
+    font-size: 1em;
+  }
+  .browse img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .prev-button,
+  .next-button {
+    font-size: 1.5em;
+    padding: 0 5px;
+  }
+  .medication-info {
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); /* Max 3 columns */
+    gap: 10px; /* Add space between buttons */
+  }
+
+
+  .medication-info .field {
+    margin-bottom: 10px;
+  }
+
+  .field strong {
+    display: block;
+    margin-bottom: 5px;
+  }
+}
